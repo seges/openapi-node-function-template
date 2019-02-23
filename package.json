@@ -8,7 +8,7 @@
   },
   "keywords": [],
   "author": "Ladislav Gazo <gazo@seges.sk>",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "bunyan": "1.8.12",
     "bunyan-middleware": "0.8.0",

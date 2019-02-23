@@ -1,0 +1,47 @@
+version: '3.4'
+
+services:
+  dev:
+    image: seges/mug-frontend-javascript:8.9.1
+    ports:
+      - 4000:4000
+    volumes:
+      - projects:/home/developer/projects
+      - npm-global:/home/developer/.npm-global
+      - ./.npmrc:/home/developer/.npmrc
+      # - /var/run/docker.sock:/var/run/docker.sock
+      # - /usr/bin/docker:/usr/bin/docker
+      # - $HOME/bin/faas-cli:/usr/local/bin/faas-cli
+      ## - faas-cli:/usr/local/bin/faas-cli
+      # - faas-local-config:/home/developer/.openfaas
+
+    command: tail -f /dev/null
+    user: "1000"
+    environment:
+      - USER=${USER}
+
+volumes:
+  projects:
+    driver: local
+    driver_opts:
+      type: none
+      device: $PWD
+      o: bind
+  npm-global:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind,uid=1000
+      device: $PWD/npm-global
+  # faas-cli:
+  #   driver: local
+  #   driver_opts:
+  #     type: none
+  #     device: $HOME/bin/faas-cli
+  #     o: bind
+  # faas-local-config:
+  #   driver: local
+  #   driver_opts:
+  #     type: none
+  #     device: $HOME/.openfaas
+  #     o: bind

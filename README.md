@@ -23,3 +23,25 @@
 ## Examples
 
 [With internal API schema](./docs/internal-schema.md)
+
+## Develop
+
+### Prepare .npmrc
+
+Create `.npmrc` in the root:
+
+```
+save-exact=true
+prefix=/home/developer/.npm-global
+```
+
+### Use Docker for development
+
+`docker-compose up -d dev`
+`docker-compose exec dev zsh`
+
+### Publish
+
+`npm login`
+`npm publish`
+
