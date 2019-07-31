@@ -103,7 +103,7 @@ const handlerCallback = (res) => (fnContext) => (err, functionResult) => {
 
     const isAttachment = isObject(functionResult) && functionResult.type === 'attachment';
 
-    if (isAttachment(functionResult)) {
+    if (isAttachment) {
         const { fileName, writeStream } = functionResult;
         res.attachment(fileName);
         // the stream needs to be finalized outside
