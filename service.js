@@ -101,7 +101,14 @@ const handlerCallback = (res) => (fnContext) => (err, functionResult) => {
         return res.status(500).send(err);
     }
 
-    if(isArray(functionResult) || isObject(functionResult)) {
+    const isAttachment = isObject(functionResult) && functionResult.type === 'attachment';
+
+    if (isAttachment(functionResult)) {
+        const { fileName, writeStream } = functionResult;
+        res.attachment(fileName);
+        // the stream needs to be finalized outside
+        writeStream.pipe(res);
+    } else if(isArray(functionResult) || isObject(functionResult)) {
         res.set(fnContext.headers()).status(fnContext.status()).send(JSON.stringify(functionResult));
     } else {
         res.set(fnContext.headers()).status(fnContext.status()).send(functionResult);

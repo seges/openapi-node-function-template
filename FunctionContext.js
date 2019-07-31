@@ -32,6 +32,17 @@ class FunctionContext {
         let message;
         this.cb(value, message);
     }
+
+    attachment(fileName, writeStream) {
+        let err;
+
+        // Creating a tagged data type here, to be able to choose a proper action in handler (cb).
+        this.cb(err, {
+            type: 'attachment',
+            fileName,
+            writeStream
+        })
+    }
 }
 
 module.exports = FunctionContext;
