@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const bunyanRequest = require('bunyan-middleware');
+const multer = require('multer');
 const { getNamespace, createNamespace } = require('cls-hooked');
 const http = require('http');
 const https = require('https');
@@ -192,6 +193,7 @@ const service = (handler) => {
     app.use(bodyParser.json({ limit: process.env.request__body__size || '1mb' }));
     app.use(bodyParser.text());
     app.use(loggingMiddleware);
+    app.use(multer().any());
     app.disable('x-powered-by');
     app.disable('etag');
 
