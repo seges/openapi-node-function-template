@@ -126,7 +126,7 @@ const wrapHandlers = (handlers) => {
         const handler = handlers[handlerName];
 
         // https://github.com/anttiviljami/openapi-backend#registering-handlers-for-operations
-        acc[handlerName] = (c, req, res) => handler(new FunctionEvent(c), new FunctionContext(handlerCallback(res)), handlerCallback);
+        acc[handlerName] = (c, req, res) => handler(new FunctionEvent(c, req), new FunctionContext(handlerCallback(res)), handlerCallback);
 
         return acc;
     }, {});
@@ -182,7 +182,16 @@ const registerApiMiddleware = (app) => (api) => new Promise((resolve, reject) =>
     resolve(app);
 });
 
-const service = (handler) => {
+const SERVICE_OPTIONS_DEFAULTS = {
+    enableFileAttachments: false
+}
+const service = (handler, userDefinedOptions) => {
+
+    const options = {
+        ...SERVICE_OPTIONS_DEFAULTS,
+        ...userDefinedOptions
+    }
+
     const namespaceName = process.env.service__namespace || 'default-ns';
 
     const ns = getNamespace(namespaceName) || createNamespace(namespaceName);
@@ -193,7 +202,11 @@ const service = (handler) => {
     app.use(bodyParser.json({ limit: process.env.request__body__size || '1mb' }));
     app.use(bodyParser.text());
     app.use(loggingMiddleware);
-    app.use(multer().any());
+
+    if (options.enableFileAttachments) {
+        app.use(multer().any());
+    }
+    
     app.disable('x-powered-by');
     app.disable('etag');
 
