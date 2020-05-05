@@ -2,6 +2,16 @@
 
 ![Build Status](https://travis-ci.org/seges/openapi-node-function-template.svg?branch=master) ![OpenFaaS](https://img.shields.io/badge/openfaas-serverless-blue.svg) ![OpenAPI](https://img.shields.io/badge/openfaas-serverless-blue.svg)
 
+## Release notes
+
+### 1.2.0
+
+* upgraded OpenAPI Backend to 2.3.0
+
+### 1.3.0
+
+* support for flexible middleware injections
+
 ## Environment configuration
 
 | Variable                     | Default value      | Description
@@ -22,7 +32,8 @@
 
 ## Examples
 
-[With internal API schema](./docs/internal-schema.md)
+* [With internal API schema](./docs/internal-schema.md)
+* [Flexible middlewares](./docs/flexible-middlewares.md)
 
 ## Develop
 

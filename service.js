@@ -197,16 +197,27 @@ const service = (handler, userDefinedOptions) => {
     const ns = getNamespace(namespaceName) || createNamespace(namespaceName);
 
     const app = express();
-    app.use(namespaceMiddleware(ns));
-    app.use(bodyParser.urlencoded({ extended: true }));
-    app.use(bodyParser.json({ limit: process.env.request__body__size || '1mb' }));
-    app.use(bodyParser.text());
-    app.use(loggingMiddleware);
-
-    if (options.enableFileAttachments) {
-        app.use(multer().any());
-    }
+    let middlewares = [
+        namespaceMiddleware(ns),
+        bodyParser.urlencoded({ extended: true }),
+        bodyParser.json({ limit: process.env.request__body__size || '1mb' }),
+        bodyParser.text(),
+        loggingMiddleware
+    ];
     
+    if (options.enableFileAttachments) {
+        middlewares.push(multer().any());
+    }
+
+    if (options.injectMiddlewares) {
+        log.info('Injecting middlewares');
+        middlewares = options.injectMiddlewares(middlewares);
+    }
+    log.debug('Final set of middlewares', middlewares);
+    middlewares.forEach(middleware => {
+        app.use(middleware);
+    });
+
     app.disable('x-powered-by');
     app.disable('etag');
 
