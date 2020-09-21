@@ -1,0 +1,58 @@
+# OpenAPI 3 function template
+
+![Build Status](https://travis-ci.org/seges/openapi-node-function-template.svg?branch=master) ![OpenFaaS](https://img.shields.io/badge/openfaas-serverless-blue.svg) ![OpenAPI](https://img.shields.io/badge/openfaas-serverless-blue.svg)
+
+## Release notes
+
+### 1.2.0
+
+* upgraded OpenAPI Backend to 2.3.0
+
+### 1.3.0
+
+* support for flexible middleware injections
+
+## Environment configuration
+
+| Variable                     | Default value      | Description
+| -----------------------------| ------------------ | ------------------
+| NODE_ENV                     |                    |
+| SSL                          | false              |
+| http__port                   | 4000               |
+| http__request_id_header      | X-Request-Id       |
+| http__ssl__key_file          | $(cwd)/ca/key.pem  |
+| http__ssl__cert_file         | $(cwd)/ca/cert.pem |
+| openapi__single_operation_id | singleHandler      |
+| openapi__filename            |                    |
+| openapi__url                 |                    |
+| service__namespace           | default-ns         |
+| request__body__size          | 1mb                |
+| logger__name                 | defaultLogger      |
+| logger__level                | info               |
+
+## Examples
+
+* [With internal API schema](./docs/internal-schema.md)
+* [Flexible middlewares](./docs/flexible-middlewares.md)
+
+## Develop
+
+### Prepare .npmrc
+
+Create `.npmrc` in the root:
+
+```
+save-exact=true
+prefix=/home/developer/.npm-global
+```
+
+### Use Docker for development
+
+`docker-compose up -d dev`
+`docker-compose exec dev zsh`
+
+### Publish
+
+`npm login`
+`npm publish`
+
