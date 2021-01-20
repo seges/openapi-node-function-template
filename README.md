@@ -1,6 +1,7 @@
 # OpenAPI 3 function template
 
-![Build Status](https://travis-ci.org/seges/openapi-node-function-template.svg?branch=master) ![OpenFaaS](https://img.shields.io/badge/openfaas-serverless-blue.svg) ![OpenAPI](https://img.shields.io/badge/openfaas-serverless-blue.svg)
+![Build Status](https://travis-ci.org/seges/openapi-node-function-template.svg?branch=develop) ![OpenFaaS](https://img.shields.io/badge/openfaas-serverless-blue.svg) ![OpenAPI](https://img.shields.io/badge/openfaas-serverless-blue.svg)[![npm version](https://img.shields.io/npm/v/openapi-node-function-template.svg)](https://www.npmjs.com/package/openapi-node-function-template)
+[![npm downloads](https://img.shields.io/npm/dw/openapi-node-function-template)](https://www.npmjs.com/package/openapi-node-function-template)
 
 Do you want to build a microservice based on OpenAPI 3 specification? Do you hate writing all the boilerplate endpoint code? Or do you need your neat serverless function? Running on OpenFaaS or another serverless provider?
 
@@ -31,6 +32,18 @@ OpenAPI Node Function Template is a single dependency along your OpenAPI 3 speci
 ### 1.2.0
 
 * upgraded OpenAPI Backend to 2.3.0
+
+## Operation handler
+
+Your operation handler for an endpoint looks like this:
+
+```
+export default async (message, context) => {
+  context.status(200).succeed({ "nice": "json" });
+}
+```
+
+Where `message` is of type `FunctionEvent` and `context` is of type `FunctionContext`.
 
 ## Environment configuration
 
