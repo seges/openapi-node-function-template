@@ -73,6 +73,6 @@ prefix=/home/developer/.npm-global
 
 ### Publish
 
-`npm login`
+`npm login registry.npmjs.org`
 `npm publish`
 
