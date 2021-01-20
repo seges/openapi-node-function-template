@@ -1,7 +1,7 @@
 {
   "name": "openapi-node-function-template",
-  "version": "1.4.0",
-  "description": "OpenAPI 3 function template for OpenFaas Serverless platform",
+  "version": "1.5.1",
+  "description": "OpenAPI 3 Node function template for easy Microservices and Serverless platform development",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
