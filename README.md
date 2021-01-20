@@ -19,6 +19,11 @@ OpenAPI Node Function Template is a single dependency along your OpenAPI 3 speci
 
 ## Release notes
 
+### 1.5.1
+
+* version fix of 1.5.0
+* this version is also published to NPM
+
 ### 1.5.0
 
 * passing request fields from OpenAPI Backend Context as part of FunctionEvent
