@@ -2,15 +2,35 @@
 
 ![Build Status](https://travis-ci.org/seges/openapi-node-function-template.svg?branch=master) ![OpenFaaS](https://img.shields.io/badge/openfaas-serverless-blue.svg) ![OpenAPI](https://img.shields.io/badge/openfaas-serverless-blue.svg)
 
+Do you want to build a microservice based on OpenAPI 3 specification? Do you hate writing all the boilerplate endpoint code? Or do you need your neat serverless function? Running on OpenFaaS or another serverless provider?
+
+You came to the right place.
+
+OpenAPI Node Function Template is a single dependency along your OpenAPI 3 specification file you actually need in order to run your service!
+
+- :white_check_mark: generated OpenAPI 3 REST endpoint
+- :white_check_mark: validated inputs based on the provided schemas
+- :white_check_mark: flexible middlewares
+- :white_check_mark: follows OpenFaaS template but it is not bound to it
+- :white_check_mark: running as standalone NodeJS server
+- :white_check_mark: works on top of Express
+- :white_check_mark: uses fantastic [OpenAPI Backend](https://github.com/anttiviljami/openapi-backend) project
+
 ## Release notes
 
-### 1.2.0
+### 1.4.0
 
-* upgraded OpenAPI Backend to 2.3.0
+* version bump
+* upgraded OpenAPI Backend to 3.7.0
+  * [list of changes](https://github.com/anttiviljami/openapi-backend/compare/2.3.0...3.7.0)
 
 ### 1.3.0
 
 * support for flexible middleware injections
+
+### 1.2.0
+
+* upgraded OpenAPI Backend to 2.3.0
 
 ## Environment configuration
 
