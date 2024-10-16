@@ -19,10 +19,13 @@ OpenAPI Node Function Template is a single dependency along your OpenAPI 3 speci
 
 ## Release notes
 
+### 1.6.0
+
+* exposed ability to exclude or obscure headers from logging
+
 ### 1.5.1
 
 * version fix of 1.5.0
-* this version is also published to NPM
 
 ### 1.5.0
 
@@ -58,21 +61,23 @@ Where `message` is of type `FunctionEvent` and `context` is of type `FunctionCon
 
 ## Environment configuration
 
-| Variable                     | Default value      | Description
-| -----------------------------| ------------------ | ------------------
-| NODE_ENV                     |                    |
-| SSL                          | false              |
-| http__port                   | 4000               |
-| http__request_id_header      | X-Request-Id       |
-| http__ssl__key_file          | $(cwd)/ca/key.pem  |
-| http__ssl__cert_file         | $(cwd)/ca/cert.pem |
-| openapi__single_operation_id | singleHandler      |
-| openapi__filename            |                    |
-| openapi__url                 |                    |
-| service__namespace           | default-ns         |
-| request__body__size          | 1mb                |
-| logger__name                 | defaultLogger      |
-| logger__level                | info               |
+| Variable                      | Default value       | Description                                             |
+|-------------------------------|---------------------|---------------------------------------------------------|
+| NODE_ENV                      |                     |                                                         |
+| SSL                           | false               |                                                         |
+| http__port                    | 4000                |                                                         |
+| http__request_id_header       | X-Request-Id        |                                                         |
+| http__ssl__key_file           | $(cwd)/ca/key.pem   |                                                         |
+| http__ssl__cert_file          | $(cwd)/ca/cert.pem  |                                                         |
+| openapi__single_operation_id  | singleHandler       |                                                         |
+| openapi__filename             |                     |                                                         |
+| openapi__url                  |                     |                                                         |
+| service__namespace            | default-ns          |                                                         |
+| request__body__size           | 1mb                 |                                                         |
+| logger__name                  | defaultLogger       |                                                         |
+| logger__level                 | info                |                                                         |
+| logger__excluded_headers      | authorization,token | comma separated list of headers to exclude from logging | 
+| logger__obscured_headers      | authorization,token | comma separated list of headers to obscure in logging   |
 
 ## Examples
 
