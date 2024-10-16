@@ -18,6 +18,8 @@ const emptyApi = require('./emptyApi');
  */
 
 const requestIdHeader = () => process.env.http__request_id_header || 'X-Request-Id';
+const excludeHeaders = () => process.env.logger__excluded_headers.split(',').map(header => header.trim()) || [];
+const obscureHeaders = () => process.env.logger__obscured_headers.split(',').map(header => header.trim()) || [];
 
 const apiMiddleware = (api) => (req, res) => api.handleRequest(req, req, res);
 
@@ -35,7 +37,9 @@ const namespaceMiddleware = (ns) => (req, res, next) => {
 const loggingMiddleware = bunyanRequest({
     logger: log,
     headerName: requestIdHeader(),
-    verbose: true
+    verbose: true,
+    excludeHeaders: excludeHeaders(),
+    obscureHeaders: obscureHeaders(),
 });
 
 const maybeApplyCors = (app) => {
@@ -118,8 +122,8 @@ const handlerCallback = (res) => (fnContext) => (err, functionResult) => {
 
 /**
  * Transform between OpenAPI Backend handler and Function handler.
- * 
- * @param {*} handlers 
+ *
+ * @param {*} handlers
  */
 const wrapHandlers = (handlers) => {
     return Object.keys(handlers).reduce((acc, handlerName) => {
@@ -204,7 +208,7 @@ const service = (handler, userDefinedOptions) => {
         bodyParser.text(),
         loggingMiddleware
     ];
-    
+
     if (options.enableFileAttachments) {
         middlewares.push(multer().any());
     }
