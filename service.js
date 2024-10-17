@@ -18,8 +18,8 @@ const emptyApi = require('./emptyApi');
  */
 
 const requestIdHeader = () => process.env.http__request_id_header || 'X-Request-Id';
-const excludeHeaders = () => process.env.logger__excluded_headers.split(',').map(header => header.trim()) || [];
-const obscureHeaders = () => process.env.logger__obscured_headers.split(',').map(header => header.trim()) || [];
+const excludeHeaders = () => process.env.logger__excluded_headers?.split(',')?.map(header => header?.trim()) || [];
+const obscureHeaders = () => process.env.logger__obscured_headers?.split(',')?.map(header => header?.trim()) || [];
 
 const apiMiddleware = (api) => (req, res) => api.handleRequest(req, req, res);
 
