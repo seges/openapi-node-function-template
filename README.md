@@ -19,6 +19,10 @@ OpenAPI Node Function Template is a single dependency along your OpenAPI 3 speci
 
 ## Release notes
 
+### 1.6.1
+
+* make previous change defensive
+
 ### 1.6.0
 
 * exposed ability to exclude or obscure headers from logging

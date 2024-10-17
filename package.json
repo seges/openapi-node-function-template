@@ -1,6 +1,6 @@
 {
   "name": "openapi-node-function-template",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "OpenAPI 3 Node function template for easy Microservices and Serverless platform development",
   "main": "index.js",
   "scripts": {
